@@ -77,16 +77,31 @@ async function depositNativeToken(data){
       const signature = await connection.sendRawTransaction(signed.serialize());
       const finality = "confirmed";
       await connection.confirmTransaction(signature, finality);
-      const explorerhash = {
+      return {
         transactionhash: signature,
       };
-      return explorerhash;
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    status: "success",
+    message: "Deposit Successful.",
+    data: {
+      ...signer_response
+    }
+  }
 }
 
 
@@ -157,10 +172,24 @@ async function withdrawNativeTokenDeposit(data){
       return explorerhash;
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Withdraw Successful."
+  }
 }
 
 
@@ -289,10 +318,25 @@ async function withdrawMultiTokenDeposit(data){
       return explorerhash;
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+    return {
+      status: "error",
+      message: "An error has occurred.",
+      data: null
+    }
+  }
+
+  return {
+    data: {...signer_response}, 
+    status: "success",
+    message: "withdraw successful."
+  }
 }
 
 
@@ -428,10 +472,24 @@ async function depositMultiToken(data){
       return explorerhash;
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Deposit Multi-Token Successful."
+  }
 }
 
 
@@ -523,14 +581,27 @@ async function initNativeTransaction(data) {
       return explorerhash;
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
   const signer_response = await signerTransac();
-  if (typeof (signer_response) === 'object') {
-      signer_response.pda = pda.publicKey.toBase58()
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
   }
-  return signer_response
+  return {
+    status: "success",
+    message: "Deposit Successful.",
+    data: {
+      ...signer_response,
+      pda: pda.publicKey.toBase58()
+    }
+  }
 }
 
 function encodeInitNativeInstructionData(data) {
@@ -610,13 +681,27 @@ async function withdrawNativeTransaction(data) {
       const signature = await connection.sendRawTransaction(signed.serialize());
       const finality = "confirmed";
       await connection.confirmTransaction(signature, finality);
-      return signature;
+      return {transactionhash: signature};
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Deposit Successful."
+  }
 }
 
 function encodeWithdrawNativeInstructionData(data) {
@@ -694,13 +779,29 @@ async function cancelNativeTransaction(data) {
       const signature = await connection.sendRawTransaction(signed.serialize());
       const finality = "confirmed";
       await connection.confirmTransaction(signature, finality);
-      return signature;
+      return {
+        transactionhash: signature
+      };
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Deposit Successful."
+  }
 }
 
 function encodeCancelNativeInstructionData(data) {
@@ -768,13 +869,29 @@ async function pauseNativeTransaction(data) {
       const signature = await connection.sendRawTransaction(signed.serialize());
       const finality = "confirmed";
       await connection.confirmTransaction(signature, finality);
-      return signature;
+      return {
+        transactionhash: signature
+      };
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Deposit Successful."
+  }
 }
 
 function encodePauseNativeInstructionData(data) {
@@ -846,13 +963,27 @@ async function resumeNativeTransaction(data) {
       const signature = await connection.sendRawTransaction(signed.serialize());
       const finality = "confirmed";
       await connection.confirmTransaction(signature, finality);
-      return signature;
+      return {transactionhash: signature};
     } catch (e) {
       console.warn(e);
-      return false;
+      return {
+        transactionhash: null
+      };
     }
   };
-  signerTransac();
+  const signer_response = await signerTransac();
+  if (signer_response.transactionhash === null) {
+      return {
+        status: "error",
+        message: "An error has occurred.",
+        data: null
+      }
+  }
+  return {
+    data: {...signer_response},
+    status: "success",
+    message: "Deposit Successful."
+  }
 }
 
 function encodeResumeNativeInstructionData(data) {
@@ -897,12 +1028,12 @@ async function MultiTokenStream(data) {
     )[0];
   }
 
-  async function main(data) {
-    const wallet= new PublicKey(data.sender); 
-    const wallet2 = new PublicKey(
-      wallettokenaddress.toBase58()
-    ); //token address
-  }
+  // async function main(data) {
+  //   const wallet= new PublicKey(data.sender); 
+  //   const wallet2 = new PublicKey(
+  //     wallettokenaddress.toBase58()
+  //   ); //token address
+  // }
 
   async function pda_seed_token(data) {
     
@@ -983,18 +1114,28 @@ async function MultiTokenStream(data) {
         return explorerhash;
       } catch (e) {
         console.warn(e);
-        return false;
+        return {
+          transactionhash: null
+        };
       }
     };
     const signer_response = await signerTransac();
-    if (typeof (signer_response) === 'object') {
-        signer_response.pda = pda.publicKey.toBase58()
+    if (signer_response.transactionhash === null) {
+        return {
+          status: "error",
+          message: "An error has occurred.",
+          data: null
+        }
     }
-    return signer_response
+    return {
+      data: {...signer_response},
+      status: "success",
+      message: "Deposit Successful."
+    }
   }
   
   const response = await pda_seed_token(data);
-  main(data);
+  // main(data);
   return response
 }
 
@@ -1044,13 +1185,13 @@ async function MultiTokenWithdraw(data) {
     )[0];
   }
 
-  async function main(data) {
-    const wallet= new PublicKey(data.sender); 
-    const wallet2 = new PublicKey(
-      wallettokenaddress.toBase58()
-    ); //token address
+  // async function main(data) {
+  //   const wallet= new PublicKey(data.sender); 
+  //   const wallet2 = new PublicKey(
+  //     wallettokenaddress.toBase58()
+  //   ); //token address
    
-  }
+  // }
 
   async function pda_seed_token(data) {
     
@@ -1159,13 +1300,27 @@ async function MultiTokenWithdraw(data) {
         return explorerhash;
       } catch (e) {
         console.warn(e);
-        return false;
+        return {
+          transactionhash: null
+        };
       }
     };
-    signerTransac();
+    const signer_response = await signerTransac();
+    if (signer_response.transactionhash === null) {
+        return {
+          status: "error",
+          message: "An error has occurred.",
+          data: null
+        }
+    }
+    return {
+      data: {...signer_response},
+      status: "success",
+      message: "Deposit Successful."
+    }
   }
   pda_seed_token(data);
-  main(data);
+  // main(data);
 }
 
 function encodeMultiTokenWithdrawInstruction(data) {
@@ -1242,12 +1397,25 @@ async function MultiTokenPause(data) {
         return explorerhash;
       } catch (e) {
         console.warn(e);
-        return false;
+        return {transactionhash: null};
       }
     };
-    signerTransac();
+    const signer_response = await signerTransac();
+    if (signer_response.transactionhash === null) {
+        return {
+          status: "error",
+          message: "An error has occurred.",
+          data: null
+        }
+    }
+    return {
+      data: {...signer_response},
+      status: "success",
+      message: "Deposit Successful."
+    }
   }
-  pda_seed_token(data);
+  const response = await pda_seed_token(data);
+  return response
 }
 
 function encodeMultiTokenPauseInstruction(data) {
@@ -1324,12 +1492,27 @@ async function MultiTokenResume(data) {
         return explorerhash;
       } catch (e) {
         console.warn(e);
-        return false;
+        return {
+          transactionhash: null
+        };
       }
     };
-    signerTransac();
+    const signer_response = await signerTransac();
+    if (signer_response.transactionhash === null) {
+        return {
+          status: "error",
+          message: "An error has occurred.",
+          data: null
+        }
+    }
+    return {
+      data: {...signer_response},
+      status: "success",
+      message: "Deposit Successful."
+    }
   }
-  pda_seed_token(data);
+  const response = await pda_seed_token(data);
+  return response
   
 }
 
@@ -1377,13 +1560,13 @@ async function MultiTokenCancel(data) {
     )[0];
   }
 
-  async function main(data) {
-    const wallet= new PublicKey(data.sender); 
-    const wallet2 = new PublicKey(
-      wallettokenaddress.toBase58()
-    ); //token address
+  // async function main(data) {
+  //   const wallet= new PublicKey(data.sender); 
+  //   const wallet2 = new PublicKey(
+  //     wallettokenaddress.toBase58()
+  //   ); //token address
     
-  }
+  // }
 
   async function pda_seed_token(data) {
     
@@ -1493,13 +1676,28 @@ async function MultiTokenCancel(data) {
         return explorerhash;
       } catch (e) {
         console.warn(e);
-        return false;
+        return {
+          transactionhash: null
+        };
       }
     };
-    signerTransac();
+    const signer_response = await signerTransac();
+    if (signer_response.transactionhash === null) {
+        return {
+          status: "error",
+          message: "An error has occurred.",
+          data: null
+        }
+    }
+    return {
+      data: {...signer_response},
+      status: "success",
+      message: "Deposit Successful."
+    }
   }
-  pda_seed_token(data);
-  main(data);
+  const response = await pda_seed_token(data);
+  return response
+  // main(data);
 }
 
 function encodeMultiTokenCancelInstruction(data) {
