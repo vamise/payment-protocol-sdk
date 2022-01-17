@@ -62,7 +62,7 @@ async function withdrawMultiTokenDeposit(data) {
   
         {
           // This is the token program public key.
-          pubkey: "2ibSirDWk5P68ZKmQQSxUMtiWQFRuanpPfMfaYzxgSRv",
+          pubkey: "8ytfrZ45J2nsZVaNX8stRauFxFia4Sbvrx7uAui5dmTm",
           isSigner: false,
           isWritable: true,
         },
@@ -204,7 +204,7 @@ async function withdrawMultiTokenDeposit(data) {
         },
         {
           // This is the token program public key.
-          pubkey: "2ibSirDWk5P68ZKmQQSxUMtiWQFRuanpPfMfaYzxgSRv",
+          pubkey: "8ytfrZ45J2nsZVaNX8stRauFxFia4Sbvrx7uAui5dmTm",
           isSigner: false,
           isWritable: true,
         },
@@ -366,7 +366,7 @@ async function withdrawMultiTokenDeposit(data) {
           },
           // token id
           {
-            pubkey: "2ibSirDWk5P68ZKmQQSxUMtiWQFRuanpPfMfaYzxgSRv",
+            pubkey: "8ytfrZ45J2nsZVaNX8stRauFxFia4Sbvrx7uAui5dmTm",
             isSigner: false,
             isWritable: false,
           },
@@ -519,7 +519,7 @@ async function withdrawMultiTokenDeposit(data) {
           },
           {
             // This is the token program public key.
-            pubkey: "2ibSirDWk5P68ZKmQQSxUMtiWQFRuanpPfMfaYzxgSRv",
+            pubkey: "8ytfrZ45J2nsZVaNX8stRauFxFia4Sbvrx7uAui5dmTm",
             isSigner: false,
             isWritable: true,
           },

@@ -1,19 +1,19 @@
-# What is Zebec Protocol?
+# What is Payment Protocol?
 
-The Zebec Protocol is a Solana based modern day Payroll solution which allows employers to pay employees every second. Our protocol allows employers to pay team members in crypto, by second, through its continuous settlement mechanism.
+The Payment Protocol is a Solana based modern day Payroll solution which allows employers to pay employees every second. Our protocol allows employers to pay team members in crypto, by second, through its continuous settlement mechanism.
 
-The Zebec Protocol is not just limited to streamlined payments. On top of pay per second, we aim to enable real time liquidity through features such as automated dollar cost averaging, yield farming, crypto IRA, 401k accounts, free fiat off-ramp and custom debit card.
+The Payment Protocol is not just limited to streamlined payments. On top of pay per second, we aim to enable real time liquidity through features such as automated dollar cost averaging, yield farming, crypto IRA, 401k accounts, free fiat off-ramp and custom debit card.
 
-# Zebec Program
+# Stream Payment Program
 
 Devnet - 7FNWTfCo3AyRBFCvr49daqKHehdn2GjNgpjuTsqy5twk
 Mainnet - Coming Soon
 
-# Next Zebec Update
+# Next Payment Protocol Update
 
 Mainnet , USDC , USDT
 
-# Install The Zebec Protocol js sdk
+# Install The Payment Protocol js sdk
 
 `$ npm i zebecprotocol-sdk @solana/web3.js buffer-layout @solana/spl-token`
 
@@ -43,7 +43,7 @@ getProvider(); // This will connect user's wallet to phantom //For more info vis
 ```javascript
 const depositTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9", // wallet public key
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq", // wallet public key
     amount: 1,
   };
 
@@ -56,7 +56,7 @@ const depositTransac = async () => {
 ```javascript
 const nativeWithdraw = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9", //wallet public key
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq", //wallet public key
     amount: 1,
   };
   const response = await withdrawNativeTokenDeposit(data);
@@ -70,8 +70,8 @@ For initializing transactions, we need to send the sender address, receiver addr
 ```javascript
 const sendTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9",
-    receiver: "FuEm7UMaCYHThzKaf9DcJ7MdM4t4SALfeNnYQq46foVv",
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq",
+    receiver: "C6DTWNjFALaBwaJcp55fkW6182ghm59VpbxbzGjbBei3",
     amount: 1,
     start: 1637182627, // epoch time stamp (unix)
     end: 1637192627,
@@ -87,8 +87,8 @@ For Pausing streaming payment,send the sender address, and receiver's address.
 ```javascript
 const pauseTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9",
-    receiver: "FuEm7UMaCYHThzKaf9DcJ7MdM4t4SALfeNnYQq46foVv",
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq",
+    receiver: "C6DTWNjFALaBwaJcp55fkW6182ghm59VpbxbzGjbBei3",
     pda: "3AicfRtVVXzkjU5L3yarWt2oMWSS32jfkPeeK5Hh9Hyz", // use saved pda returned from initNativeTransaction()
   };
   const response = await pauseNativeTransaction(data);
@@ -102,8 +102,8 @@ For Resuming streaming payment, send the sender address, and receiver's address.
 ```javascript
 const resumeTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9",
-    receiver: "FuEm7UMaCYHThzKaf9DcJ7MdM4t4SALfeNnYQq46foVv",
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq",
+    receiver: "C6DTWNjFALaBwaJcp55fkW6182ghm59VpbxbzGjbBei3",
     pda: "3AicfRtVVXzkjU5L3yarWt2oMWSS32jfkPeeK5Hh9Hyz",
   };
   const response = await resumeNativeTransaction(data);
@@ -117,8 +117,8 @@ For cancelling streaming payment, send the sender and receiver address, amount.
 ```javascript
 const cancelTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9",
-    receiver: "FuEm7UMaCYHThzKaf9DcJ7MdM4t4SALfeNnYQq46foVv",
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq",
+    receiver: "C6DTWNjFALaBwaJcp55fkW6182ghm59VpbxbzGjbBei3",
     pda: "3AicfRtVVXzkjU5L3yarWt2oMWSS32jfkPeeK5Hh9Hyz",
   };
 
@@ -133,8 +133,8 @@ For withdrawing from streamed payment or streaming payment, send the sender addr
 ```javascript
 const withTransac = async () => {
   const data = {
-    sender: "J75jd3kjsABQSDrEdywcyhmbq8eHDowfW9xtEWsVALy9",
-    receiver: "FuEm7UMaCYHThzKaf9DcJ7MdM4t4SALfeNnYQq46foVv",
+    sender: "Bettxr9Gh1So6kvMsMhU4aRJSi1fanQT7CE1MmyZ3LDq",
+    receiver: "C6DTWNjFALaBwaJcp55fkW6182ghm59VpbxbzGjbBei3",
     pda: "3AicfRtVVXzkjU5L3yarWt2oMWSS32jfkPeeK5Hh9Hyz",
     amount: 0.5,
   };
